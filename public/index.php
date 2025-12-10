@@ -14,12 +14,13 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 require_once __DIR__ .'/../Routes/args.php';
 require_once __DIR__ .'/../Routes/GroupRoutes.php';
-require_once __DIR__ .'/../Routes/jsonResponce.php';
+require_once __DIR__ .'/../Routes/jsonResponse.php';
 require_once __DIR__ .'/../Routes/MultiMethods.php';
 require_once __DIR__ .'/../Routes/put_deletee.php';
 require_once __DIR__ .'/../Routes/regularExp.php';
 require_once __DIR__ .'/../Routes/simple.php';
 require_once __DIR__ .'/../Routes/RequestObject.php';
+require_once __DIR__ .'/../Routes/ResponseObject.php';
 
 
 

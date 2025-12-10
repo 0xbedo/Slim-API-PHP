@@ -13,9 +13,10 @@ $app->get("/request[/{name:[a-zA-Z]+}]", function(Request $req, Response $res , 
   $out["Host"] = $req->getUri()->getHost();
   $out["ParsedData"] = $req->getParsedBody();
   $out["Attribute"] = $req->getAttribute("name");
+
   //Headers
+
   $headers = $req->getHeaders();
-  $I=-1;
   foreach ($headers as $name => $values) {
       $out[$name] = implode(", ", $values);
   }
