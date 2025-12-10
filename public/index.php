@@ -11,7 +11,7 @@ $app->addBodyParsingMiddleware();
 $app->setBasePath('/Slim-API-PHP/public');
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-
+require __DIR__ .'/../src/middleware.php';
 require_once __DIR__ .'/../Routes/args.php';
 require_once __DIR__ .'/../Routes/GroupRoutes.php';
 require_once __DIR__ .'/../Routes/jsonResponse.php';
@@ -21,6 +21,7 @@ require_once __DIR__ .'/../Routes/regularExp.php';
 require_once __DIR__ .'/../Routes/simple.php';
 require_once __DIR__ .'/../Routes/RequestObject.php';
 require_once __DIR__ .'/../Routes/ResponseObject.php';
+require_once __DIR__ .'/../Routes/testMiddleware.php';
 
 
 
