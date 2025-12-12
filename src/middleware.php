@@ -10,6 +10,7 @@ $app->add( function ( Request $req, RequestHandler $handler): Response  {
 // BEFORE (قبل الراوت)
 // ----------------------
 // مثال: فحص الهيدرز أو التوكين أو أي شيء
+// $auth = $req->getHeaderLine("user");
 $auth = $req->getHeaderLine("user");
 if ($auth === "admin") {
   // لازم تبعت الريكوست للـ handler علشان يكمل ع الراوت
@@ -20,7 +21,7 @@ if ($auth === "admin") {
 // AFTER (بعد الراوت)
 // ----------------------
 // مثال: تعديل الريسبونس بعد الراوت
-  $response->getBody()->write(" \nsuccess Check for 0xbedo Header\n");
+  $response->getBody()->write(" \nsuccess Check for admin Header\n");
   return $response;
 
 }else{

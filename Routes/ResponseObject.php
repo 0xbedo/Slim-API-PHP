@@ -26,5 +26,5 @@ $app->get("/response", function (Request $req, Response $res){
 
 
   $newResponse->getBody()->write(json_encode($out, JSON_PRETTY_PRINT));
-  return $newResponse->withHeader('Content-Type', 'application/json');;
+  return $newResponse->withHeader('Content-Type', 'application/json');
 }); 

@@ -15,8 +15,8 @@ $app->get("/request[/{name:[a-zA-Z]+}]", function(Request $req, Response $res , 
   $out["Attribute"] = $req->getAttribute("name");
 
   //Headers
-
   $headers = $req->getHeaders();
+
   foreach ($headers as $name => $values) {
       $out[$name] = implode(", ", $values);
   }
@@ -24,3 +24,8 @@ $app->get("/request[/{name:[a-zA-Z]+}]", function(Request $req, Response $res , 
   $res->getBody()->write(json_encode($out));
   return $res;
 });
+  // $out["Status Code"] = $res->getStatusCode();
+  // $res->getBody()->write(json_encode($out));
+  // edit in status code
+  // $newResponse = $res->withStatus(302);
+  // $out["Status Code"] = $newResponse->getStatusCode();
