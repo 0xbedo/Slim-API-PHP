@@ -35,3 +35,11 @@ $app->get('/payment', function (Request $req,Response $res){
   $res->getBody()->write(string: "[+] This is Payment Endpoint [+]\n-- After Pass Middleware -- \n");
   return $res;
 })->add($SecMiddleware);
+
+
+
+$app->get('/midclass', function (Request $req,Response $res){
+
+  $res->getBody()->write(string: "[+] This is middleware Endpoint [+]\n-- After Pass Middleware Class -- \n");
+  return $res;
+})->add( middleware: new MiddlewareClass());

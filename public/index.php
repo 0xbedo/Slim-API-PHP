@@ -12,6 +12,7 @@ $app->setBasePath('/Slim-API-PHP/public');
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 require __DIR__ .'/../src/middleware.php';
+require __DIR__ .'/../lib/middlewareClass.php';
 require_once __DIR__ .'/../Routes/args.php';
 require_once __DIR__ .'/../Routes/GroupRoutes.php';
 require_once __DIR__ .'/../Routes/jsonResponse.php';
