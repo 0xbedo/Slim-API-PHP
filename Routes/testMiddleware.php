@@ -43,3 +43,28 @@ $app->get('/midclass', function (Request $req,Response $res){
   $res->getBody()->write(string: "[+] This is middleware Endpoint [+]\n-- After Pass Middleware Class -- \n");
   return $res;
 })->add( middleware: new MiddlewareClass());
+
+// adding attribute from middleware
+$addAttribute = function (Request $req, RequestHandler $handler){
+
+  $req = $req->withAttribute("Pass",true);
+  $res = $handler->handle($req);
+  $res->getBody()->write("\n[+] adding attribute from middleware [+]\n");
+  return $res;
+};
+// $app->;
+$app->get('/attribute', function (Request $req,Response $res){
+  $header = $req->getHeaders();
+  $att = $req->getAttributes();
+  $out=[];
+  foreach ($header as $key => $value) {
+    $out[$key] = $value;
+  }
+  foreach ($att as $key => $value) {
+    $out[$key] = $value;
+  }
+  $myparam = $req->getAttribute('Pass');
+  $message = array("middleware_attribute"=>$myparam);
+  $res->getBody()->write(json_encode([$message, $myparam,$out]));
+  return $res;
+})->add($addAttribute);
