@@ -3,7 +3,10 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response as SlimResponse;// to create new response
+use Tuupola\Middleware\HttpBasicAuthentication;
 
+// old middleware
+/*
 $app->add( function ( Request $req, RequestHandler $handler): Response  {
 
 // ----------------------
@@ -29,8 +32,29 @@ if ($auth === "admin") {
   $res->getBody()->write("\n403: Forbidden You Not An admin");
   return $res;
 
+}});*/
+
+// Basic Auth Middleware
+class BasicAuthMiddleware {
+  private static array $users = [
+    "0xbedo"=>"123456",
+    "user"=>"123456",
+    "admin"=>"123456"
+];
+  public static function create(): HttpBasicAuthentication{
+    $bacicAuth = new HttpBasicAuthentication(options: [
+      'realm' => 'protected api',
+      'authenticator' => static function (array $args){
+        $user = $args["user"] ?? '';
+        $password = $args["password"] ?? '';
+        return isset(self::$users[$user]) && self::$users[$user] === $password;
+    }]);
+return $bacicAuth;
+  }
 }
 
-
-
-});
+    // if( $user === '0xbedo' && $password === '123456'){
+    //   return true;
+    // }else{
+    //   return false;
+    // }
