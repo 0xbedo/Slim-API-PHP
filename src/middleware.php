@@ -1,10 +1,15 @@
 <?php
+use JimTools\JwtAuth\Decoder\FirebaseDecoder;
+use JimTools\JwtAuth\Middleware\JwtAuthentication;
+use JimTools\JwtAuth\Options;
+use JimTools\JwtAuth\Secret;
+use JimTools\JwtAuth\Rules\RequestPathRule;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response as SlimResponse;// to create new response
 use Tuupola\Middleware\HttpBasicAuthentication;
 
+// $error = $container->get('ErrorOperation');
 // old middleware
 /*
 $app->add( function ( Request $req, RequestHandler $handler): Response  {
@@ -49,12 +54,31 @@ class BasicAuthMiddleware {
         $password = $args["password"] ?? '';
         return isset(self::$users[$user]) && self::$users[$user] === $password;
     }]);
-return $bacicAuth;
+        return $bacicAuth;
   }
 }
+/*   ==================   */
+// JWT Token 
 
-    // if( $user === '0xbedo' && $password === '123456'){
-    //   return true;
-    // }else{
-    //   return false;
-    // }
+
+$options = new Options(
+    isSecure: false,
+    relaxed : ['localhost'],
+    header: 'Authorization',
+    regexp: '/Bearer\s+(.*)$/i',
+    attribute: 'token'
+);
+$secret = new Secret('JWTF0r0Xbedo','HS512');
+$rules = [new RequestPathRule(
+  paths: [ '/'],
+  ignore: ['/Slim-API-PHP/public/JWTToken']
+)];
+/* ===========================
+   JWT DECODER
+=========================== */
+
+// $decoder = new FirebaseDecoder($secret); 
+$decoder = new FirebaseDecoder($secret); 
+$app->add( new  JwtAuthentication($options, $decoder, $rules));
+
+

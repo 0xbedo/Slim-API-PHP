@@ -34,12 +34,17 @@ class ComposerStaticInit026509606a55be5c56c243e48adc6597
         array (
             'Laravel\\SerializableClosure\\' => 28,
         ),
+        'J' =>
+        array (
+            'JimTools\\JwtAuth\\' => 17,
+        ),
         'I' =>
         array (
             'Invoker\\' => 8,
         ),
         'F' =>
         array (
+            'Firebase\\JWT\\' => 13,
             'Fig\\Http\\Message\\' => 17,
             'FastRoute\\' => 10,
         ),
@@ -90,9 +95,17 @@ class ComposerStaticInit026509606a55be5c56c243e48adc6597
         array (
             0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
         ),
+        'JimTools\\JwtAuth\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/jimtools/jwt-auth/src',
+        ),
         'Invoker\\' =>
         array (
             0 => __DIR__ . '/..' . '/php-di/invoker/src',
+        ),
+        'Firebase\\JWT\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Fig\\Http\\Message\\' =>
         array (

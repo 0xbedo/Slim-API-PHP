@@ -1,6 +1,6 @@
 <?php
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use \Firebase\JWT\JWT;// JWT token
+
 // adding service to he contianer
 
 
@@ -12,4 +12,9 @@ $container->set(name: "JsonOperation", value: function ($c): JsonService {
 $container->set(name:"ErrorOperation", value: function ( ){
   $error = new ErrorHandle();
   return $error;
+});
+
+$container->set(name:"JWT", value: function ( ){
+  $JWT = new JWT();
+  return $JWT;
 });
